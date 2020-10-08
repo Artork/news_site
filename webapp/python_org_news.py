@@ -3,7 +3,8 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
-from webapp.model import db, News
+from webapp.db import db
+from webapp.news.models import News
 
 def get_html(url):
     try:
@@ -40,9 +41,12 @@ def get_python_news():
 
 
 def save_news(title, url, published):
-    new_news = News(title=title, url=url, published=published)
-    db.session.add(new_news)
-    db.session.commit()
+    new_exists = News.query.filter(NEW.url == url).count()
+    print(new_exists)
+    if not new_exists:
+        new_news = News(title=title, url=url, published=published)
+        db.session.add(new_news)
+        db.session.commit()
 
 
 
