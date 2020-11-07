@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+    <th>
+        <td>
+            название товара
+        </td>
+        <td>
+            количество товара
+        </td>
+        <td>
+            Действие
+        </td>
+    </th>
+    {%for item in cart.items%}
+        {% include 'cart_item.html', item: item %}
+    {% endfor %}
+</table>
+
+card_item.html
+
+<tr>
+    <td>
+        {{item.name}}
+    </td>
+    <td>
+        {{item.quantity}}
+    </td>
+    <td>
+        <form id="{{item.id}}" url="/cart_item/delete/{{item.id}}" method="POST">
+            <button>Удалить</button>
+        </form>
+    </td>
+</tr>
+{% endblock %}

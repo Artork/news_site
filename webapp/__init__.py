@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from webapp.db import db
 from webapp.user.models import User
+from flask_migrate import Migrate
 
 from webapp.weather import weather_by_city
 from webapp.user.views import blueprint as user_blueprint
@@ -15,6 +16,8 @@ def create_app():
     app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+    migrate = Migrate(app, db)
+
 
     #покдючаем LoginManager
     login_manager = LoginManager()

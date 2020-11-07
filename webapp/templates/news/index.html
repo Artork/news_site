@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{ % block content %}
+{% block content %}
   <div class = 'row'>
       <div class = 'col-8'>
           {% with messages = get_flashed_messages() %}
@@ -28,4 +28,4 @@
               {% endif %}
       </div>
   </div>  
-{ % endblock % }
+{% endblock %}
