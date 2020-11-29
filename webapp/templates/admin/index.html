@@ -1,3 +1,16 @@
 {% extends "base.html" %}
-
-{% block content %} Добавьте новую категорию{% endblock %}
+{% block content %}
+<tr>
+    <td>
+        <button>Удалить</button>
+    </td>
+    <td>
+        <button>Удалить</button>
+    </td>
+    <td>
+        <form id="{{item.id}}" url="/cart_item/delete/{{item.id}}" method="POST">
+            <button>Удалить</button>
+        </form>
+    </td>
+</tr>
+{% endblock %}
