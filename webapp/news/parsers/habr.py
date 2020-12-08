@@ -1,8 +1,13 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from webapp.news.parsers.utils import get_html, save_news
 from bs4 import BeautifulSoup
+import locale
+import platform
 
-
+if platform.system() == 'Windows':
+    locale.setlocale(locale.LC_ALL, "russian")
+else:
+    locale.setlocale(locale.LC_TIME, 'ru_RU')
 
 def get_habr_snippets():
     html = get_html("https://habr.com/ru/search/?target_type=posts&q=python&order_by=date")
